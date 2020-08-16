@@ -1,4 +1,5 @@
 ## Clone this repo.
+```https://github.com/kotikoB/angular-frontend.git```
 ## Install dependencies
 ```npm install```
 ## Run the application
