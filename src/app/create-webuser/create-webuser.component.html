@@ -1,0 +1,167 @@
+<h1>
+  TODO: Add UI and logic to create a new Webuser on the databse via the API
+</h1>
+
+<div class="alert alert-success" *ngIf="isDone">{{ successMessage }}</div>
+
+<div class="col-md-6">
+  <form
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && username.invalid"
+      >
+        Username is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="form.password"
+        required
+        minlength="4"
+        #password="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && password.invalid"
+      >
+        <div *ngIf="password.errors.required">Password is required</div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 6 characters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">firstName</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        [(ngModel)]="form.firstName"
+        required
+        #firstName="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && lastName.invalid"
+      >
+        <div *ngIf="lastName.errors.required">FirstName is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">LastName</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        [(ngModel)]="form.lastName"
+        required
+        #lastName="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && lastName.invalid"
+      >
+        <div *ngIf="lastName.errors.required">LastName is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        [(ngModel)]="form.email"
+        required
+        #email="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && email.invalid"
+      >
+        <div *ngIf="email.errors.required">Email is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="customerId">CustomerId</label>
+      <input
+        type="text"
+        class="form-control"
+        name="customerId"
+        [(ngModel)]="form.customerId"
+        required
+        #customerId="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && customerId.invalid"
+      >
+        <div *ngIf="customerId.errors.required">CustomerId is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="employeeId">EmployeeId</label>
+      <input
+        type="text"
+        class="form-control"
+        name="employeeId"
+        [(ngModel)]="form.employeeId"
+        required
+        #employeeId="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && employeeId.invalid"
+      >
+        <div *ngIf="employeeId.errors.required">EmployeeId is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">
+        Create
+      </button>
+    </div>
+    <div class="form-group">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && isFailed"
+      >
+        Creating user failed: {{ errorMessage }}
+      </div>
+    </div>
+  </form>
+</div>

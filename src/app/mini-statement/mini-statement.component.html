@@ -1,0 +1,99 @@
+<h1>
+  TODO: Add UI and logic to retrieve a mini-statement for an account via the API
+</h1>
+
+<div class="col-md-4">
+  <div class="form-group">
+    <div
+      class="alert alert-success"
+      role="alert"
+      *ngIf="isDone"
+    >
+      {{ successMessage }} size {{ size }}
+    </div>
+  </div>
+
+  <form
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="customerId">customerId</label>
+      <input
+        type="text"
+        class="form-control"
+        name="customerId"
+        [(ngModel)]="form.customerId"
+        required
+        #customerId="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && customerId.invalid"
+      >
+        CustomerId is required!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="accountNo">accountNo</label>
+      <input
+        type="text"
+        class="form-control"
+        name="accountNo"
+        [(ngModel)]="form.accountNo"
+        required
+        #accountNo="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && accountNo.invalid"
+      >
+        <div *ngIf="accountNo.errors.required">AccountNo is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">
+        Search
+      </button>
+    </div>
+    <div class="form-group">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && isFailed"
+      >
+        {{ errorMessage }}
+      </div>
+    </div>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Transaction Id</th>
+      <th>Customer Id</th>
+      <th>Account No</th>
+      <th>Amount</th>
+      <th>Balance</th>
+      <th>Trn Type</th>
+      <th>Debit/Credit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tran of transList">
+      <div *ngIf="transList.length === 0">No data Found</div>
+      <td>{{ tran.transactionId }}</td>
+      <td>{{ tran.customerId }}</td>
+      <td>{{ tran.accountNo }}</td>
+      <td>{{ tran.amount }}</td>
+      <td>{{ tran.balance }}</td>
+      <td>{{ tran.transactionType }}</td>
+      <td>{{ tran.debitOrCredit }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+<div style="margin: 20px;">
+  <input
+    type="text"
+    placeholder="search"
+    (keyup)="onKey($event.target.value)"
+  />
+  <p *ngIf="!isFound">No Details found for {{ values }}</p>
+  <p *ngIf="isFound">No Details found for {{ values }}</p>
+</div>
